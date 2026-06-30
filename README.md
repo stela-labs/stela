@@ -46,29 +46,40 @@ interface OrderInput {
   orderId: string;
 }
 
+interface ShipmentSignal {
+  carrier: string;
+  trackingNumber: string;
+}
+
 async function chargeCard(orderId: string): Promise<{ chargeId: string }> {
   // Call Stripe, Adyen, your billing service, etc.
   return { chargeId: `ch_${orderId}` };
 }
 
-async function sendEmail(orderId: string, chargeId: string): Promise<void> {
+async function sendEmail(
+  orderId: string,
+  chargeId: string,
+  shipment: ShipmentSignal,
+): Promise<void> {
   // Call your email provider.
-  console.log(`sent receipt for ${orderId} / ${chargeId}`);
+  console.log(
+    `sent receipt for ${orderId} / ${chargeId} / ${shipment.trackingNumber}`,
+  );
 }
 
 export const orderWorkflow = workflow<OrderInput, void>(
   "order.fulfill",
-  async ({ input, step, sleep }) => {
+  async ({ input, step }) => {
     const payment = await step.run(
       "charge-card",
       () => chargeCard(input.orderId),
       { maxAttempts: 3, timeoutMs: 30_000 },
     );
 
-    await sleep("wait-before-email", "1h");
+    const shipment = await step.waitForSignal<ShipmentSignal>("shipment.ready");
 
     await step.run("send-email", () =>
-      sendEmail(input.orderId, payment.chargeId),
+      sendEmail(input.orderId, payment.chargeId, shipment),
     );
   },
   { timeoutMs: 120_000 },
@@ -87,8 +98,17 @@ const client = new StelaClient({ connectionString });
 const { runId } = await client.start(orderWorkflow, { orderId: "ord_123" });
 
 console.log(`enqueued run ${runId}`);
+
+// Later, from a webhook or internal event handler:
+await client.sendSignal(runId, "shipment.ready", {
+  carrier: "ups",
+  trackingNumber: "1Z999AA10123456784",
+});
+
 await client.end();
 ```
+
+Use `step.waitForSignal` for external events such as webhooks, approvals, document uploads, and shipment notifications. Use `sleep` for durable timers such as reminders, retry windows, dunning schedules, and delayed follow-ups.
 
 `src/worker.ts`
 
