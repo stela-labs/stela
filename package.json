@@ -23,7 +23,7 @@
   ],
   "workspaces": ["packages/*", "examples/*"],
   "scripts": {
-    "build": "npm run build -w packages/core && npm run build -w packages/cli && npm run build -w examples/basic && npm run build -w examples/email-drip && npm run build -w examples/payment",
+    "build": "npm run build -w packages/core && npm run build -w packages/cli && npm run build -w examples/basic && npm run build -w examples/email-drip && npm run build -w examples/payment && npm run build -w examples/agent-research && npm run build -w examples/support-triage && npm run build -w examples/financial-kyc && npm run build -w examples/chargeback-evidence && npm run build -w examples/incident-runbook",
     "test": "vitest run"
   },
   "devDependencies": {

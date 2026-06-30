@@ -90,6 +90,23 @@ stela worker --json-logs --log-level info
 | `@stela/core` | SDK, executor, worker, DB layer |
 | `@stela/cli` | CLI binary (`stela`) |
 
+## Examples
+
+Stela includes runnable examples for durable jobs, agentic workflows, and finance operations:
+
+| Example | What it demonstrates |
+|---|---|
+| `examples/basic` | Order processing with durable steps and sleep |
+| `examples/payment` | Idempotent payment processing with retries |
+| `examples/email-drip` | Multi-step onboarding with durable sleeps |
+| `examples/agent-research` | Research agent with human approval before publishing |
+| `examples/support-triage` | Support ticket triage, account enrichment, reviewed reply |
+| `examples/financial-kyc` | KYC document upload, screening, analyst decision |
+| `examples/chargeback-evidence` | Chargeback packet generation and approved submission |
+| `examples/incident-runbook` | Incident investigation with operator-approved remediation |
+
+See [examples guide](docs/examples.md).
+
 ## Execution model
 
 Every time a run is claimed, the workflow function is re-executed from the top (replay). `step.run` returns the cached result for completed steps without calling the function again. `sleep` stores a durable wake time and halts execution until the scheduled wake time. Workflow functions must be deterministic across replays.
@@ -121,6 +138,7 @@ Workers accept `logLevel`, `jsonLogs`, `logger`, and `metrics` options. Metrics 
 
 - [Validation patterns](docs/validation.md)
 - [Production deployment guide](docs/deployment.md)
+- [Examples guide](docs/examples.md)
 
 ## Project
 
