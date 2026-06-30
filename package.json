@@ -1,0 +1,13 @@
+{
+  "name": "stela",
+  "private": true,
+  "workspaces": ["packages/*", "examples/*"],
+  "scripts": {
+    "build": "npm run build -w packages/core && npm run build -w packages/cli && npm run build -w examples/basic && npm run build -w examples/email-drip && npm run build -w examples/payment",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0",
+    "typescript": "^5.4.5"
+  }
+}

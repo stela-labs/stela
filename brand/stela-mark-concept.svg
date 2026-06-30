@@ -1,0 +1,25 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Stela mark concept</title>
+  <desc id="desc">A minimal graphite stela with a carved replay path and warm checkpoint accent.</desc>
+  <rect width="1024" height="1024" fill="#F6F1E7"/>
+  <path
+    d="M314 802V325C314 209.02 395.02 132 512 132C628.98 132 710 209.02 710 325V802C710 851.706 669.706 892 620 892H404C354.294 892 314 851.706 314 802Z"
+    fill="#242528"
+  />
+  <path
+    d="M594 286C536 256 438 270 426 348C412 438 593 414 593 515C593 598 478 594 432 654"
+    stroke="#F6F1E7"
+    stroke-width="52"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M596 286C538 256 440 270 428 348C414 438 595 414 595 515C595 598 480 594 434 654"
+    stroke="#D47846"
+    stroke-width="18"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <rect x="571" y="663" width="74" height="74" rx="18" fill="#D47846"/>
+  <rect x="591" y="683" width="34" height="34" rx="8" fill="#F6F1E7"/>
+</svg>

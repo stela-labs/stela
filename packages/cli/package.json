@@ -1,0 +1,21 @@
+{
+  "name": "@stela/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stela": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@stela/core": "*",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.6",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.5"
+  }
+}

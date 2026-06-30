@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: stela
+      POSTGRES_USER: stela
+      POSTGRES_PASSWORD: stela
+    ports:
+      - "55432:5432"
+    volumes:
+      - stela-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stela -d stela"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  stela-postgres:

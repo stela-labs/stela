@@ -1,0 +1,26 @@
+<svg width="1600" height="640" viewBox="0 0 1600 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Stela logo v3</title>
+  <desc id="desc">A refined Stela logo with a shouldered stela symbol and calm lowercase wordmark.</desc>
+  <rect width="1600" height="640" fill="#F6F1E7"/>
+  <style>
+    .wordmark {
+      font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 220px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+  </style>
+
+  <g transform="translate(306 174) scale(0.39)">
+    <path
+      d="M366 830V306C366 291.148 371.901 276.904 382.402 266.402L450.402 198.402C460.904 187.901 475.148 182 490 182H534C548.852 182 563.096 187.901 573.598 198.402L641.598 266.402C652.099 276.904 658 291.148 658 306V830C658 874.183 622.183 910 578 910H446C401.817 910 366 874.183 366 830Z"
+      fill="#202225"
+    />
+    <path d="M456 352H568" stroke="#F6F1E7" stroke-width="28" stroke-linecap="round"/>
+    <path d="M456 504H520" stroke="#F6F1E7" stroke-width="28" stroke-linecap="round"/>
+    <path d="M548 504H584" stroke="#BF6B45" stroke-width="28" stroke-linecap="round"/>
+    <path d="M456 656H568" stroke="#F6F1E7" stroke-width="28" stroke-linecap="round"/>
+  </g>
+
+  <text class="wordmark" x="642" y="396" fill="#202225">stela</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="1600" height="640" viewBox="0 0 1600 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Stela logo</title>
+  <desc id="desc">A refined Stela logo lockup with a quiet upright stela symbol and lowercase wordmark.</desc>
+  <rect width="1600" height="640" fill="#F6F1E7"/>
+  <style>
+    .wordmark {
+      font-family: "Proxima Nova A", "Proxima Nova", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 220px;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
+  </style>
+
+  <g transform="translate(336 186) scale(0.35)">
+    <path
+      d="M378 804V276C378 223.533 420.533 181 473 181H551C603.467 181 646 223.533 646 276V804C646 856.467 603.467 899 551 899H473C420.533 899 378 856.467 378 804Z"
+      fill="#202225"
+    />
+    <rect x="450" y="336" width="124" height="30" rx="15" fill="#F6F1E7"/>
+    <rect x="450" y="488" width="78" height="30" rx="15" fill="#F6F1E7"/>
+    <rect x="546" y="488" width="40" height="30" rx="15" fill="#BF6B45"/>
+    <rect x="450" y="640" width="124" height="30" rx="15" fill="#F6F1E7"/>
+  </g>
+
+  <text class="wordmark" x="622" y="394" fill="#202225">stela</text>
+</svg>

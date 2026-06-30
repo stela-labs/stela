@@ -1,0 +1,18 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Stela mark concept v2</title>
+  <desc id="desc">A minimal graphite stela with carved workflow-step inscriptions and a warm active checkpoint.</desc>
+  <rect width="1024" height="1024" fill="#F6F1E7"/>
+
+  <path
+    d="M338 812V268C338 219.399 377.399 180 426 180H596L686 270V812C686 860.601 646.601 900 598 900H426C377.399 900 338 860.601 338 812Z"
+    fill="#242528"
+  />
+  <path d="M596 180V246C596 259.255 606.745 270 620 270H686L596 180Z" fill="#38393C"/>
+
+  <rect x="424" y="332" width="188" height="40" rx="20" fill="#F6F1E7"/>
+  <rect x="424" y="474" width="132" height="40" rx="20" fill="#F6F1E7"/>
+  <rect x="424" y="616" width="188" height="40" rx="20" fill="#F6F1E7"/>
+
+  <rect x="580" y="474" width="56" height="40" rx="14" fill="#D47846"/>
+  <rect x="580" y="616" width="56" height="40" rx="14" fill="#D47846"/>
+</svg>
