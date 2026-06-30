@@ -1,9 +1,35 @@
 {
   "name": "@stela/core",
   "version": "0.1.0",
+  "description": "Core SDK and runtime for Stela durable TypeScript workflows backed by Postgres.",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/*.d.ts",
+    "dist/*.d.ts.map",
+    "dist/*.js",
+    "dist/*.js.map",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stela-labs/stela.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/stela-labs/stela#readme",
+  "bugs": {
+    "url": "https://github.com/stela-labs/stela/issues"
+  },
+  "keywords": [
+    "typescript",
+    "postgres",
+    "workflow-engine",
+    "background-jobs",
+    "durable-execution",
+    "retries"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -20,6 +46,6 @@
   "devDependencies": {
     "@types/pg": "^8.11.6",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "vitest": "^4.1.9"
   }
 }

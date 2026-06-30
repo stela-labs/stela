@@ -1,7 +1,33 @@
 {
   "name": "@stela/cli",
   "version": "0.1.0",
+  "description": "Command-line tools for operating Stela workflows, workers, migrations, and runs.",
+  "license": "MIT",
   "type": "module",
+  "files": [
+    "dist/*.d.ts",
+    "dist/*.d.ts.map",
+    "dist/*.js",
+    "dist/*.js.map",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stela-labs/stela.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/stela-labs/stela#readme",
+  "bugs": {
+    "url": "https://github.com/stela-labs/stela/issues"
+  },
+  "keywords": [
+    "typescript",
+    "postgres",
+    "workflow-engine",
+    "background-jobs",
+    "cli",
+    "durable-execution"
+  ],
   "bin": {
     "stela": "./dist/index.js"
   },

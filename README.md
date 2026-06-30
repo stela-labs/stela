@@ -1,8 +1,10 @@
 # Stela
 
-Stela is a local-first, self-hosted TypeScript durable workflow runtime.
+[![CI](https://github.com/stela-labs/stela/actions/workflows/ci.yml/badge.svg)](https://github.com/stela-labs/stela/actions/workflows/ci.yml)
 
-Lightweight and fast, it persists workflow execution state in Postgres using a replay-based model. Steps are cached on completion; sleeps pause execution until a future time; workers resume persisted runs by replaying cached step results.
+Stela is a Postgres-backed TypeScript workflow engine for durable jobs, events, retries, sleeps, and background processing.
+
+Local-first and self-hosted, it persists workflow execution state in Postgres using a replay-based model. Steps are cached on completion; sleeps pause execution until a future time; workers resume persisted runs by replaying cached step results.
 
 ## Requirements
 
@@ -119,3 +121,9 @@ Workers accept `logLevel`, `jsonLogs`, `logger`, and `metrics` options. Metrics 
 
 - [Validation patterns](docs/validation.md)
 - [Production deployment guide](docs/deployment.md)
+
+## Project
+
+- License: MIT
+- Contributing: see [CONTRIBUTING.md](CONTRIBUTING.md)
+- Security: see [SECURITY.md](SECURITY.md)

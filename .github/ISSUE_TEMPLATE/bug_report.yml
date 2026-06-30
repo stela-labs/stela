@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible issue in Stela.
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Minimal steps, code, schema, or commands that reproduce the issue.
+      placeholder: |
+        1. Start Postgres with ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Stela version or commit
+      placeholder: "0.1.0 or commit SHA"
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      placeholder: "20.x"
+  - type: input
+    id: postgres
+    attributes:
+      label: Postgres version
+      placeholder: "14, 15, 16"
