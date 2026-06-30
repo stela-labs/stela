@@ -17,7 +17,7 @@ Local-first and self-hosted, it persists workflow execution state in Postgres us
 npm install
 npm run build
 DATABASE_URL=postgres://user:pass@localhost/stela npx stela migrate
-DATABASE_URL=postgres://user:pass@localhost/stela node examples/basic/dist/index.js
+DATABASE_URL=postgres://user:pass@localhost/stela npm start -w examples/basic
 ```
 
 For local Postgres:
@@ -27,37 +27,117 @@ docker compose up -d postgres
 DATABASE_URL=postgres://stela:stela@localhost:55432/stela npx stela migrate
 ```
 
-## API
+## TypeScript Usage
+
+A Stela app usually has three pieces:
+
+- a shared workflow definition
+- an API, route handler, or script that enqueues runs
+- a worker process that executes queued runs
+
+For a quick demo these can live in one file. In a real app, keep the workflow definition shared and run the starter and worker as separate processes.
+
+`src/workflows/order.ts`
 
 ```ts
-import { workflow, StelaClient, startWorker } from "@stela/core";
+import { workflow } from "@stela/core";
 
-const orderWorkflow = workflow(
+interface OrderInput {
+  orderId: string;
+}
+
+async function chargeCard(orderId: string): Promise<{ chargeId: string }> {
+  // Call Stripe, Adyen, your billing service, etc.
+  return { chargeId: `ch_${orderId}` };
+}
+
+async function sendEmail(orderId: string, chargeId: string): Promise<void> {
+  // Call your email provider.
+  console.log(`sent receipt for ${orderId} / ${chargeId}`);
+}
+
+export const orderWorkflow = workflow<OrderInput, void>(
   "order.fulfill",
   async ({ input, step, sleep }) => {
-    const payment = await step.run("charge-card", () => chargeCard(input.orderId), {
-      maxAttempts: 3,
-      timeoutMs: 30_000,
-    });
+    const payment = await step.run(
+      "charge-card",
+      () => chargeCard(input.orderId),
+      { maxAttempts: 3, timeoutMs: 30_000 },
+    );
+
     await sleep("wait-before-email", "1h");
-    await step.run("send-email", () => sendEmail(input.orderId, payment.chargeId));
+
+    await step.run("send-email", () =>
+      sendEmail(input.orderId, payment.chargeId),
+    );
   },
-  {
-    timeoutMs: 120_000,
-  },
+  { timeoutMs: 120_000 },
 );
+```
+
+`src/api.ts`
+
+```ts
+import { StelaClient } from "@stela/core";
+import { orderWorkflow } from "./workflows/order.js";
 
 const connectionString = process.env.DATABASE_URL!;
 const client = new StelaClient({ connectionString });
+
 const { runId } = await client.start(orderWorkflow, { orderId: "ord_123" });
 
-const worker = startWorker({
+console.log(`enqueued run ${runId}`);
+await client.end();
+```
+
+`src/worker.ts`
+
+```ts
+import { startWorker } from "@stela/core";
+import { orderWorkflow } from "./workflows/order.js";
+
+startWorker({
+  connectionString: process.env.DATABASE_URL!,
+  workflows: [orderWorkflow],
+  jsonLogs: true,
+  logLevel: "info",
+});
+```
+
+If your TypeScript project uses native Node ESM (`"type": "module"` with `moduleResolution: "NodeNext"`), local relative imports use the emitted runtime extension:
+
+```ts
+import { orderWorkflow } from "./workflows/order.js";
+```
+
+The source file is still TypeScript:
+
+```text
+src/workflows/order.ts
+```
+
+Package imports do not need a file extension:
+
+```ts
+import { workflow, StelaClient, startWorker } from "@stela/core";
+```
+
+## Single-File Demo
+
+The runnable examples combine enqueueing and worker startup in one file so they are easy to try locally:
+
+```ts
+const { runId } = await client.start(orderWorkflow, { orderId: "ord_123" });
+
+startWorker({
   connectionString,
   workflows: [orderWorkflow],
   jsonLogs: true,
   logLevel: "info",
 });
 ```
+
+That is convenient for examples. In production, run your API and worker separately.
 
 ## CLI
 
