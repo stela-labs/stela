@@ -37,10 +37,10 @@
   },
   "dependencies": {
     "@stela/core": "*",
-    "pg": "^8.11.5"
+    "pg": "^8.23.0"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.6",
+    "@types/pg": "^8.23.1",
     "@types/node": "^20.14.0",
     "typescript": "^5.4.5"
   }
